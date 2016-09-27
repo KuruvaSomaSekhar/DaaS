@@ -1,12 +1,14 @@
 ##Google Container Engine
 ```bash 
 gcloud config set compute/zone us-central1-b
+```
 
 ##Google Container Registry
 ###Install Docker
 ```bash 
  sudo apt-get install apt-transport-https ca-certificates
  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+ ```
 
 For Ubuntu 16.04
 ```bash 
@@ -19,6 +21,7 @@ sudo apt-get install docker-engine
 sudo service docker start
 sudo usermod -a -G docker nithink
 sudo systemctl enable docker
+```
 
 ###Creating the Docker File
 ```bash 
@@ -28,16 +31,19 @@ sudo docker exec -it ec6daaaeb442da683a8c741549e9e378caefa00e1039d357f0e5582e100
 sudo docker stop ec6daaaeb442da683a8c741549e9e378caefa00e1039d357f0e5582e1001a077
 sudo docker ps -a
 sudo docker run -it --name nithin sample
+```
  
 ### Build and Start Docker 
 ```bash 
 docker build -t webserver .
 docker run -e GUNICORN_WORKERS=4 -e GUNICORN_ACCESSLOG=- -p 8000:8000 webserver
+```
 
 ### Pushing Docker image to the registry
 ```bash 
  docker tag webserver gcr.io/q-project-x/webserver
  cloud docker push gcr.io/q-project-x/webserver
+ ```
 
 
 ###Run a container Image 
@@ -50,7 +56,9 @@ docker run -e GUNICORN_WORKERS=4 -e GUNICORN_ACCESSLOG=- -p 8000:8000 webserver
  kubectl cluster-info
  kubectl delete services ws
  gcloud container clusters delete ws-cluster
+ ```
 
 
 ##Web Service
-Falcon framework is used for web service  
+Falcon framework is used for web service 
+ 
