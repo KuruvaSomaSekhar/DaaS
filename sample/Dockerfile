@@ -6,6 +6,7 @@ COPY logging.conf /logging.conf
 COPY gunicorn.conf /gunicorn.conf
 
 COPY simple_api.py /
+COPY simple_api.py /var/
 
 EXPOSE 8000
 

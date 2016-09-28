@@ -42,7 +42,7 @@ docker run -e GUNICORN_WORKERS=4 -e GUNICORN_ACCESSLOG=- -p 8000:8000 webserver
 ### Pushing Docker image to the registry
 ```bash 
  docker tag webserver gcr.io/q-project-x/webserver
- cloud docker push gcr.io/q-project-x/webserver
+ gcloud docker push gcr.io/q-project-x/webserver
  ```
 
 
@@ -52,13 +52,33 @@ docker run -e GUNICORN_WORKERS=4 -e GUNICORN_ACCESSLOG=- -p 8000:8000 webserver
  gcloud components install kubectl
  kubectl run ws --image=gcr.io/q-project-x/webserver:latest --port=8000
  kubectl expose deployment ws --type="LoadBalancer"
- kubectl get service wskubectl cluster-info
+ kubectl get service ws
  kubectl cluster-info
  kubectl delete services ws
  gcloud container clusters delete ws-cluster
  ```
 
+###Login to the Container 
+```bash 
+kubectl get pods --all-namespaces
+kubectl exec -it ws-2008136543-ozxzy  bash
+```
+
+###Get Log File
+kubectl get pods
+kubectl logs ws-2008136543-6xgsz
+
+
+###Update the Code in Container 
+kubectl set image deployments/ws ws=gcr.io/q-project-x/webserver:latest
+
+###Get deployments 
+kubectl get deployments
+
+###Delete Deployments 
+kubectl delete service,deployment ws
+
 
 ##Web Service
 Falcon framework is used for web service 
- 
+
